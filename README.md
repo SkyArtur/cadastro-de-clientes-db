@@ -9,7 +9,16 @@
 ![GitHub forks](https://img.shields.io/github/forks/SkyArtur/cadastro_de_cliente-exercicio?style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/SkyArtur/cadastro_de_cliente-exercicio?style=social)
 
-Exercício prático no aprendizado em Python. 
+Exercício prático no aprendizado em Python. Foram trabalhados neste projetos, tópicos como:
+
+Tratamento de Exceções
+
+Orientação à objetos
+
+Utilização da API pycep_correios para validação do CEP
+
+Dunder Methods
+
 
 ## Autor
 
