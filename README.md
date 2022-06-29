@@ -5,9 +5,9 @@
 
 # Exercício de Git e GitHub + Python
 
-![GitHub repo size](https://img.shields.io/github/repo-size/SkyArtur/cadastro_de_cliente-exercicio)
-![GitHub forks](https://img.shields.io/github/forks/SkyArtur/cadastro_de_cliente-exercicio?style=social)
-![GitHub Repo stars](https://img.shields.io/github/stars/SkyArtur/cadastro_de_cliente-exercicio?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/SkyArtur/cadastro-de-clientes-db)
+![GitHub forks](https://img.shields.io/github/forks/SkyArtur/cadastro-de-clientes-db?style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/SkyArtur/cadastro-de-clientes-db?style=social)
 
 Exercício prático no aprendizado em Python. Foram trabalhados neste projetos, tópicos como:
 
