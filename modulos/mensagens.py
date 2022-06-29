@@ -46,25 +46,81 @@ criar_tabela_clientes = '''CREATE TABLE clientes
 telefone text, logradouro text, numero_casa text, cep text, 
 bairro text, cidade text, uf text, senha text, data_abertura text,
 saldo real, limite real, disponivel real)'''
-inserir_dados_do_cliente = '''INSERT INTO clientes VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
-buscar_todos_os_clientes = '''SELECT numero_conta, nome, cpf FROM clientes VALUE'''
-acessar_por_numero_conta = '''SELECT * FROM clientes WHERE numero_conta=?'''
-acessar_por_nome = '''SELECT * FROM clientes WHERE nome=?'''
-acessar_por_cpf = '''SELECT * FROM clientes WHERE cpf=?'''
-procurar_por_nome = '''SELECT numero_conta, nome, cpf FROM clientes WHERE nome=?'''
-procurar_por_cpf = '''SELECT numero_conta, nome, cpf FROM clientes WHERE cpf=?'''
-gerar_numero_de_conta = '''SELECT numero_conta FROM clientes'''
-alterar_saldo_update = '''UPDATE clientes SET saldo=?, limite=?, disponivel=? WHERE numero_conta=?'''
-alterar_saldo_select = '''SELECT saldo, limite, disponivel FROM clientes WHERE numero_conta=?'''
-validar_numero_conta = '''SELECT numero_conta FROM clientes WHERE numero_conta=?'''
-validar_nome_cliente = '''SELECT nome FROM clientes'''
-validar_cpf_cliente = '''SELECT cpf FROM clientes'''
+
+inserir_dados_do_cliente = '''
+INSERT INTO clientes 
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
+
+buscar_todos_os_clientes = '''
+SELECT numero_conta, nome, cpf 
+FROM clientes 
+VALUE'''
+
+acessar_por_numero_conta = '''
+SELECT * 
+FROM clientes 
+WHERE numero_conta=?'''
+
+acessar_por_nome = '''
+SELECT * 
+FROM clientes 
+WHERE nome=?'''
+
+acessar_por_cpf = '''
+SELECT * 
+FROM clientes 
+WHERE cpf=?'''
+
+procurar_por_nome = '''
+SELECT numero_conta, nome, cpf 
+FROM clientes 
+WHERE nome=?'''
+
+procurar_por_cpf = '''
+SELECT numero_conta, nome, cpf 
+FROM clientes 
+WHERE cpf=?'''
+
+gerar_numero_de_conta = '''
+SELECT numero_conta 
+FROM clientes'''
+
+alterar_saldo_update = '''
+UPDATE clientes 
+SET saldo=?, limite=?, disponivel=? 
+WHERE numero_conta=?'''
+
+alterar_saldo_select = '''
+SELECT saldo, limite, disponivel 
+FROM clientes 
+WHERE numero_conta=?'''
+
+validar_numero_conta = '''
+SELECT numero_conta 
+FROM clientes 
+WHERE numero_conta=?'''
+
+validar_nome_cliente = '''
+SELECT nome 
+FROM clientes'''
+
+validar_cpf_cliente = '''
+SELECT cpf 
+FROM clientes'''
 
 # --------------------------------------- COMANDOS TABELA EXTRATOS -----------------------------------------------------
-criar_tabela_extratos = '''CREATE TABLE extratos 
+criar_tabela_extratos = '''
+CREATE TABLE extratos 
 (numero_conta text, operacao text, data text, valor real)'''
-inserir_dados_extrato = '''INSERT INTO extratos VALUES (?,?,?,?)'''
-trazer_extrato = '''SELECT * FROM extratos WHERE numero_conta=?'''
+
+inserir_dados_extrato = '''
+INSERT INTO extratos 
+VALUES (?,?,?,?)'''
+
+trazer_extrato = '''
+SELECT * 
+FROM extratos 
+WHERE numero_conta=?'''
 
 # --------------------------------------- MENSAGENS TABELA CLIENTES ----------------------------------------------------
 msg_inserir_dados_do_cliente = """Sucesso ao ralizar o cadastro do cliente:"""
@@ -127,7 +183,7 @@ endereco_encontrado = """MensagemCep ~01:
 #              Mensagens do módulo gerenciador
 # ----------------------------------------------------------------------------------------------------------------------
 msg_gerenciador_abertura_de_conta = """MensagemGerente ~01:
-    Conta aberrta com sucesso."""
+    Conta aberta com sucesso."""
 msg_gerenciador_saque = """Saque realizado com sucesso:
     VALOR:"""
 msg_gerenciador_deposito = """Deposit realizado com sucesso:

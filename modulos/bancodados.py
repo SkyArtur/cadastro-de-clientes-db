@@ -1,5 +1,4 @@
 import sqlite3
-from os import mkdir
 
 from modulos.mensagens import *
 
@@ -8,10 +7,6 @@ from modulos.mensagens import *
 #       CLASSE AUXILIAR DO ARQUIVO DO BANCO DE DADOS
 # ----------------------------------------------------------------------------------------------------------------------
 class AuxiliarArquivo:
-
-    # ----------------------------------------------------------------------------
-    #  PROCURAR ARQUIVO
-    # ----------------------------------------------------------------------------
     @staticmethod
     def _procura_banco():
         try:
@@ -22,9 +17,6 @@ class AuxiliarArquivo:
         else:
             return True
 
-    # ----------------------------------------------------------------------------
-    #  PROCURAR ARQUIVO
-    # ----------------------------------------------------------------------------
     @staticmethod
     def _procura_extrato():
         try:
@@ -50,9 +42,6 @@ class AuxTabExtratos(AuxiliarArquivo, Relatorios):
             self.__cursor.execute(criar_tabela_extratos)
             self.__tabela_extrato.commit()
 
-    # ----------------------------------------------------------------------------
-    #  INSERIR DADOS DO EXTRATO
-    # ----------------------------------------------------------------------------
     def inserir_dados_extrato(self, dados):
         try:
             self.__cursor.execute(inserir_dados_extrato, dados)
@@ -64,9 +53,6 @@ class AuxTabExtratos(AuxiliarArquivo, Relatorios):
             print(msg_inserir_dados_extrato, f"R${dados[3]:.2f}")
             return self.__tabela_extrato.close()
 
-    # ----------------------------------------------------------------------------
-    #  TRAZER EXTRATO
-    # ----------------------------------------------------------------------------
     def trazer_extrato(self, numero_conta):
         chaves = ['numero_conta', 'op', 'data', 'valor']
         try:
@@ -89,7 +75,6 @@ class AuxTabExtratos(AuxiliarArquivo, Relatorios):
 class BancoDeDados(AuxiliarArquivo, Relatorios):
     def __init__(self):
         if self._procura_banco():
-            sqlite3.
             self.__cliente_db = sqlite3.connect('./banco/banco.db')
             self.__cursor = self.__cliente_db.cursor()
         else:
@@ -98,9 +83,6 @@ class BancoDeDados(AuxiliarArquivo, Relatorios):
             self.__cursor.execute(criar_tabela_clientes)
             self.__cliente_db.commit()
 
-    # ----------------------------------------------------------------------------
-    #  INSERIR DADOS DO CLIENTE
-    # ----------------------------------------------------------------------------
     def inserir_dados_do_cliente(self, dados):
         conta = f'\n\tCONTA: {dados[0]}'
         cliente = f'\n\tCLIENTE: {dados[1].title()}'
@@ -113,17 +95,11 @@ class BancoDeDados(AuxiliarArquivo, Relatorios):
         else:
             return self.__cliente_db.close()
 
-    # ----------------------------------------------------------------------------
-    #  BUSCAR TODOS OS CLIENTES
-    # ----------------------------------------------------------------------------
     def buscar_todos_os_clientes(self):
         print('\tCONTA\t\t|\t\t\t\tNOME\t\t\t\t|\tCPF')
         for cliente in self.__cursor.execute(buscar_todos_os_clientes):
             print(f"{cliente[0]:^15} | {cliente[1]:^34}| {cliente[2]}".title())
 
-    # ----------------------------------------------------------------------------
-    #  VALIDAÇÕES PARA NÚMERO DE CONTA, NOME, CPF
-    # ----------------------------------------------------------------------------
     def validar_numero_conta(self, numero_conta):
         for conta in self.__cursor.execute(validar_numero_conta, numero_conta):
             confirma = True if numero_conta == conta else False
@@ -143,9 +119,6 @@ class BancoDeDados(AuxiliarArquivo, Relatorios):
         else:
             return False
 
-    # ----------------------------------------------------------------------------
-    #  GERAR NUMERO DE CONTA
-    # ----------------------------------------------------------------------------
     def gerar_numero_de_conta(self):
         try:
             self.__cursor.execute(gerar_numero_de_conta)
@@ -157,9 +130,6 @@ class BancoDeDados(AuxiliarArquivo, Relatorios):
         else:
             return f"{numero:0>5}-2"
 
-    # ----------------------------------------------------------------------------
-    #  ACESSAR POR NUMERO DA CONTA
-    # ----------------------------------------------------------------------------
     def acessar_dados_do_cliente(self, busca, ident='numero_conta'):
         chaves = ['numero_conta', 'nome', 'data_nascimento', 'cpf', 'telefone',
                   'logradouro', 'numero_casa', 'cep', 'bairro', 'cidade', 'uf',
@@ -182,9 +152,6 @@ class BancoDeDados(AuxiliarArquivo, Relatorios):
             print(Relatorios(dados_da_conta)._ralatorio_cliente())
             return conta[0]
 
-    # ----------------------------------------------------------------------------
-    #  PROCURAR CLIENTE
-    # ----------------------------------------------------------------------------
     def procurar_por_cpf_nome(self, item, ident=None):
         chaves = ['numero_conta', 'nome', 'cpf']
         if ident == 'nome':
@@ -201,9 +168,6 @@ class BancoDeDados(AuxiliarArquivo, Relatorios):
             dados_cliente = {chaves[x]: cliente[x] for x in range(len(cliente))}
             print(Relatorios(dados_cliente)._relatorio_de_busca())
 
-    # ----------------------------------------------------------------------------
-    #  ALTERAR SALDO
-    # ----------------------------------------------------------------------------
     def altera_saldo_limite(self, dados_de_saque: tuple, ident='saldo'):
         self.__cursor.execute(alterar_saldo_select, (dados_de_saque[1],))
         valores = self.__cursor.fetchall()[0]
